@@ -3,56 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transaction Entry</title>
+  <title>Finance Tracker</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #eef2f7;
-      width: 100%;
-      min-height: 100vh;
-    }
-
+    body { font-family: 'Segoe UI', sans-serif; background: #eef2f7; width: 100%; min-height: 100vh; }
     .card { background: white; width: 100%; min-height: 100vh; }
 
     .header {
       background: linear-gradient(135deg, #1a3c5e 0%, #2d6a4f 100%);
       padding: 28px 24px 0;
-      text-align: center;
-      color: white;
+      text-align: center; color: white;
     }
-
     .logo {
-      background: white;
-      border-radius: 14px;
-      width: 64px; height: 64px;
-      margin: 0 auto 12px;
+      background: white; border-radius: 14px;
+      width: 64px; height: 64px; margin: 0 auto 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 28px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      font-size: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
-
     .header h2 { font-size: 17px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
     .header p { font-size: 12px; opacity: 0.72; margin-top: 4px; margin-bottom: 20px; }
 
     .tabs { display: flex; margin-top: 16px; }
-
     .tab-btn {
       flex: 1; padding: 12px 8px;
       background: rgba(255,255,255,0.12);
       color: rgba(255,255,255,0.7);
       border: none; font-size: 13px; font-weight: 700;
-      cursor: pointer; letter-spacing: 0.5px;
-      border-bottom: 3px solid transparent;
-      transition: all 0.2s;
+      cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s;
     }
-
-    .tab-btn.active {
-      background: rgba(255,255,255,0.18);
-      color: white;
-      border-bottom: 3px solid #7ed56f;
-    }
+    .tab-btn.active { background: rgba(255,255,255,0.18); color: white; border-bottom: 3px solid #7ed56f; }
 
     .form-body { padding: 24px 20px 48px; max-width: 600px; margin: 0 auto; }
     .tab-content { display: none; }
@@ -65,7 +44,6 @@
       border-bottom: 1.5px solid #e2e8f0;
     }
     .section-title:first-child { margin-top: 0; }
-
     .field { margin-bottom: 14px; }
 
     label {
@@ -89,26 +67,20 @@
       -webkit-appearance: none; appearance: none;
       transition: border 0.2s, box-shadow 0.2s;
     }
-
     textarea { padding: 13px; min-height: 80px; resize: none; }
-
     input:focus, select:focus, textarea:focus {
       outline: none; border-color: #2d6a4f; background: white;
       box-shadow: 0 0 0 3px rgba(45,106,79,0.1);
     }
-
     input::placeholder, textarea::placeholder { color: #b0bcc8; }
-
     select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'%3E%3Cpath fill='%23718096' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 13px center;
       background-color: #f8fafc; padding-right: 36px;
     }
-
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
     .type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-
     .type-btn {
       padding: 13px; border: 2px solid #e2e8f0; border-radius: 10px;
       background: #f8fafc; font-size: 14px; font-weight: 700;
@@ -123,31 +95,20 @@
     }
     .record-card.pending { border-left: 4px solid #f6ad55; }
     .record-card.partial { border-left: 4px solid #63b3ed; }
-    .record-card.completed { border-left: 4px solid #68d391; opacity: 0.7; }
 
-    .record-top {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; margin-bottom: 8px;
-    }
+    .record-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
     .record-person { font-weight: 700; font-size: 15px; color: #2d3748; }
     .record-amount { font-weight: 800; font-size: 15px; }
     .record-amount.lend { color: #e53e3e; }
     .record-amount.borrow { color: #2d6a4f; }
     .record-meta { font-size: 12px; color: #718096; margin-bottom: 8px; }
 
-    .record-progress {
-      background: #e2e8f0; border-radius: 999px;
-      height: 6px; margin-bottom: 8px; overflow: hidden;
-    }
+    .record-progress { background: #e2e8f0; border-radius: 999px; height: 6px; margin-bottom: 8px; overflow: hidden; }
     .record-progress-bar { height: 100%; border-radius: 999px; background: #68d391; }
 
-    .record-status {
-      display: inline-block; padding: 3px 10px;
-      border-radius: 999px; font-size: 11px; font-weight: 700;
-    }
+    .record-status { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; }
     .status-pending { background: #fef3c7; color: #92400e; }
     .status-partial { background: #dbeafe; color: #1e40af; }
-    .status-completed { background: #d1fae5; color: #065f46; }
 
     .repay-btn {
       float: right; padding: 5px 12px; background: #1a3c5e;
@@ -162,16 +123,9 @@
       align-items: center; justify-content: center; padding: 20px;
     }
     .modal-overlay.show { display: flex; }
-
-    .modal {
-      background: white; border-radius: 16px;
-      padding: 24px 20px; width: 100%; max-width: 400px;
-    }
+    .modal { background: white; border-radius: 16px; padding: 24px 20px; width: 100%; max-width: 400px; }
     .modal h3 { font-size: 16px; font-weight: 800; color: #2d3748; margin-bottom: 16px; }
-    .modal-close {
-      float: right; background: none; border: none;
-      font-size: 20px; cursor: pointer; color: #718096; margin-top: -4px;
-    }
+    .modal-close { float: right; background: none; border: none; font-size: 20px; cursor: pointer; color: #718096; margin-top: -4px; }
 
     .submit-btn {
       width: 100%; padding: 17px; background: #1a3c5e;
@@ -182,28 +136,19 @@
     .submit-btn:active { background: #2d6a4f; transform: scale(0.98); }
     .submit-btn:disabled { opacity: 0.6; }
 
-    .msg {
-      margin-top: 14px; padding: 13px; border-radius: 10px;
-      text-align: center; font-size: 14px; font-weight: 600; display: none;
-    }
+    .msg { margin-top: 14px; padding: 13px; border-radius: 10px; text-align: center; font-size: 14px; font-weight: 600; display: none; }
     .msg.success { background: #c6f6d5; color: #276749; display: block; }
-    .msg.error   { background: #fed7d7; color: #9b2c2c; display: block; }
+    .msg.error { background: #fed7d7; color: #9b2c2c; display: block; }
 
     .skeleton {
       background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
       background-size: 200% 100%; animation: shimmer 1.2s infinite;
       border-radius: 10px; margin-bottom: 14px;
     }
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
     .no-records { text-align: center; padding: 30px; color: #a0aec0; font-size: 14px; }
-    .footer {
-      text-align: center; padding: 20px; font-size: 11px;
-      color: #a0aec0; border-top: 1px solid #f0f0f0; margin-top: 20px;
-    }
+    .footer { text-align: center; padding: 20px; font-size: 11px; color: #a0aec0; border-top: 1px solid #f0f0f0; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -229,34 +174,21 @@
     <!-- TRANSACTION TAB -->
     <div id="tab-transaction" class="tab-content active" style="display:none;">
       <div class="section-title">📋 Transaction Info</div>
-
       <div class="field">
         <label>Date <span class="req">*</span></label>
-        <div class="input-wrap">
-          <span class="icon">📅</span>
-          <input type="date" id="t-date" />
-        </div>
+        <div class="input-wrap"><span class="icon">📅</span><input type="date" id="t-date" /></div>
       </div>
-
       <div class="row2">
         <div class="field">
           <label>Account <span class="req">*</span></label>
-          <div class="input-wrap">
-            <span class="icon">🏦</span>
-            <select id="t-account"><option value="">-- Select --</option></select>
-          </div>
+          <div class="input-wrap"><span class="icon">🏦</span><select id="t-account"><option value="">-- Select --</option></select></div>
         </div>
         <div class="field">
           <label>Amount (৳) <span class="req">*</span></label>
-          <div class="input-wrap">
-            <span class="icon">💵</span>
-            <input type="number" id="t-amount" placeholder="0" min="0" inputmode="numeric" />
-          </div>
+          <div class="input-wrap"><span class="icon">💵</span><input type="number" id="t-amount" placeholder="0" min="0" inputmode="numeric" /></div>
         </div>
       </div>
-
       <div class="section-title">🏷️ Category Details</div>
-
       <div class="field">
         <label>Category <span class="req">*</span></label>
         <div class="input-wrap">
@@ -268,21 +200,15 @@
           </select>
         </div>
       </div>
-
       <div class="field">
         <label>Subcategory <span class="req">*</span></label>
-        <div class="input-wrap">
-          <span class="icon">🏷️</span>
-          <select id="t-subcategory"><option value="">-- Select Category first --</option></select>
-        </div>
+        <div class="input-wrap"><span class="icon">🏷️</span><select id="t-subcategory"><option value="">-- Select Category first --</option></select></div>
       </div>
-
       <div class="section-title">📝 Additional Info</div>
       <div class="field">
         <label>Detail / Note</label>
         <textarea id="t-detail" placeholder="Note লিখুন..."></textarea>
       </div>
-
       <button class="submit-btn" id="t-submitBtn" onclick="submitTransaction()">Submit Transaction</button>
       <div id="t-msg" class="msg"></div>
     </div>
@@ -290,7 +216,6 @@
     <!-- LEND & BORROW TAB -->
     <div id="tab-lendborrow" class="tab-content" style="display:none;">
       <div class="section-title">➕ New Entry</div>
-
       <div class="field">
         <label>Type <span class="req">*</span></label>
         <div class="type-toggle">
@@ -299,24 +224,16 @@
         </div>
         <input type="hidden" id="lb-type" value="Lend" />
       </div>
-
       <div class="row2">
         <div class="field">
           <label>Date <span class="req">*</span></label>
-          <div class="input-wrap">
-            <span class="icon">📅</span>
-            <input type="date" id="lb-date" />
-          </div>
+          <div class="input-wrap"><span class="icon">📅</span><input type="date" id="lb-date" /></div>
         </div>
         <div class="field">
           <label>Amount (৳) <span class="req">*</span></label>
-          <div class="input-wrap">
-            <span class="icon">💵</span>
-            <input type="number" id="lb-amount" placeholder="0" min="0" inputmode="numeric" />
-          </div>
+          <div class="input-wrap"><span class="icon">💵</span><input type="number" id="lb-amount" placeholder="0" min="0" inputmode="numeric" /></div>
         </div>
       </div>
-
       <div class="field">
         <label>Person Name <span class="req">*</span></label>
         <div class="input-wrap">
@@ -325,28 +242,18 @@
           <datalist id="person-list"></datalist>
         </div>
       </div>
-
       <div class="field">
         <label>Account <span class="req">*</span></label>
-        <div class="input-wrap">
-          <span class="icon">🏦</span>
-          <select id="lb-account"><option value="">-- Select --</option></select>
-        </div>
+        <div class="input-wrap"><span class="icon">🏦</span><select id="lb-account"><option value="">-- Select --</option></select></div>
       </div>
-
       <div class="field">
         <label>Due Date</label>
-        <div class="input-wrap">
-          <span class="icon">📆</span>
-          <input type="date" id="lb-duedate" />
-        </div>
+        <div class="input-wrap"><span class="icon">📆</span><input type="date" id="lb-duedate" /></div>
       </div>
-
       <div class="field">
         <label>Note</label>
         <textarea id="lb-note" placeholder="কারণ বা বিস্তারিত লিখুন..."></textarea>
       </div>
-
       <button class="submit-btn" id="lb-submitBtn" onclick="submitLendBorrow()">Submit Entry</button>
       <div id="lb-msg" class="msg"></div>
 
@@ -365,73 +272,57 @@
     <h3>💰 Repayment Entry</h3>
     <input type="hidden" id="repay-id" />
     <input type="hidden" id="repay-person" />
-    <input type="hidden" id="repay-type" />
-
     <div class="field">
       <label>Date <span class="req">*</span></label>
-      <div class="input-wrap">
-        <span class="icon">📅</span>
-        <input type="date" id="repay-date" />
-      </div>
+      <div class="input-wrap"><span class="icon">📅</span><input type="date" id="repay-date" /></div>
     </div>
     <div class="field">
       <label>Account <span class="req">*</span></label>
-      <div class="input-wrap">
-        <span class="icon">🏦</span>
-        <select id="repay-account"><option value="">-- Select --</option></select>
-      </div>
+      <div class="input-wrap"><span class="icon">🏦</span><select id="repay-account"><option value="">-- Select --</option></select></div>
     </div>
     <div class="field">
       <label>Repay Amount (৳) <span class="req">*</span></label>
-      <div class="input-wrap">
-        <span class="icon">💵</span>
-        <input type="number" id="repay-amount" placeholder="0" min="0" inputmode="numeric" />
-      </div>
+      <div class="input-wrap"><span class="icon">💵</span><input type="number" id="repay-amount" placeholder="0" min="0" inputmode="numeric" /></div>
     </div>
-
     <div id="repay-msg" class="msg"></div>
     <button class="submit-btn" id="repay-submitBtn" onclick="submitRepayment()">Confirm Repayment</button>
   </div>
 </div>
 
 <script>
+  const API = 'https://script.google.com/macros/s/AKfycbwWq59RCoL2OWNhMKS6G37JdYQZmOC4vYJu7wBmR99Kq73p28Xrv_3rJp3ATNPtaGY7sQ/exec';
   let dropdownData = {};
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('t-date').value = today;
   document.getElementById('lb-date').value = today;
   document.getElementById('repay-date').value = today;
 
-  // Apps Script Web App থেকে data load
-  google.script.run
-    .withSuccessHandler(function(data) {
+  // Data load করুন
+  fetch(API + '?action=getDataJson')
+    .then(res => res.json())
+    .then(data => {
       dropdownData = data;
       const tAcc = document.getElementById('t-account');
       const lbAcc = document.getElementById('lb-account');
       const repayAcc = document.getElementById('repay-account');
-
       data.accounts.forEach(a => {
         [tAcc, lbAcc, repayAcc].forEach(sel => {
           const opt = document.createElement('option');
-          opt.value = a; opt.textContent = a;
-          sel.appendChild(opt);
+          opt.value = a; opt.textContent = a; sel.appendChild(opt);
         });
       });
-
       const personList = document.getElementById('person-list');
       (data.persons || []).forEach(p => {
-        const opt = document.createElement('option');
-        opt.value = p; personList.appendChild(opt);
+        const opt = document.createElement('option'); opt.value = p; personList.appendChild(opt);
       });
-
       document.getElementById('loadingArea').style.display = 'none';
       document.getElementById('tab-transaction').style.display = 'block';
       renderRecords(data.lendBorrowRecords || []);
     })
-    .withFailureHandler(function(err) {
+    .catch(() => {
       document.getElementById('loadingArea').innerHTML =
         '<p style="color:red;text-align:center;padding:20px;">Error loading. Please refresh.</p>';
-    })
-    .getDropdownData();
+    });
 
   function switchTab(tab, btn) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -457,7 +348,7 @@
 
   function renderRecords(records) {
     const container = document.getElementById('records-list');
-    const active = records.filter(r => r.status !== 'Completed');
+    const active = (records || []).filter(r => r.status !== 'Completed');
     if (active.length === 0) { container.innerHTML = '<div class="no-records">কোনো active record নেই</div>'; return; }
     container.innerHTML = active.map(r => {
       const paid = Number(r.paidAmount) || 0;
@@ -481,7 +372,7 @@
           <div>
             <span class="record-status ${statusClass}">${r.status}</span>
             <span style="font-size:12px;color:#718096;margin-left:8px;">Remaining: ৳${remaining.toLocaleString()}</span>
-            <button class="repay-btn" onclick="openRepayModal('${r.id}','${r.person}','${r.type}')">+ Repay</button>
+            <button class="repay-btn" onclick="openRepayModal('${r.id}','${r.person}')">+ Repay</button>
           </div>
           ${r.dueDate ? `<div style="font-size:11px;color:#718096;margin-top:6px;">Due: ${formatDate(r.dueDate)}</div>` : ''}
         </div>`;
@@ -490,13 +381,13 @@
 
   function formatDate(d) {
     if (!d) return '';
-    return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    try { return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }); }
+    catch(e) { return d; }
   }
 
-  function openRepayModal(id, person, type) {
+  function openRepayModal(id, person) {
     document.getElementById('repay-id').value = id;
     document.getElementById('repay-person').value = person;
-    document.getElementById('repay-type').value = type;
     document.getElementById('repay-amount').value = '';
     document.getElementById('repay-date').value = today;
     document.getElementById('repayModal').classList.add('show');
@@ -514,22 +405,23 @@
     if (!date || !account || !amount || !category || !subcat) { showMsg('t-msg', '⚠️ সব required field পূরণ করুন!', 'error'); return; }
     const btn = document.getElementById('t-submitBtn');
     btn.disabled = true; btn.textContent = '⏳ SAVING...';
-    google.script.run
-      .withSuccessHandler(() => {
-        showMsg('t-msg', '✅ Transaction সফলভাবে save হয়েছে!', 'success');
-        btn.disabled = false; btn.textContent = 'SUBMIT TRANSACTION';
-        document.getElementById('t-amount').value = '';
-        document.getElementById('t-detail').value = '';
-        document.getElementById('t-category').value = '';
-        document.getElementById('t-subcategory').innerHTML = '<option value="">-- Select Category first --</option>';
-        document.getElementById('t-account').value = '';
-        document.getElementById('t-date').value = today;
-      })
-      .withFailureHandler(err => {
-        showMsg('t-msg', '❌ Error: ' + err.message, 'error');
-        btn.disabled = false; btn.textContent = 'SUBMIT TRANSACTION';
-      })
-      .submitTransaction({ date, account, amount: Number(amount), category, subcategory: subcat, detail });
+    fetch(API, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'submitTransaction', date, account, amount: Number(amount), category, subcategory: subcat, detail })
+    }).then(() => {
+      showMsg('t-msg', '✅ Transaction সফলভাবে save হয়েছে!', 'success');
+      btn.disabled = false; btn.textContent = 'SUBMIT TRANSACTION';
+      document.getElementById('t-amount').value = '';
+      document.getElementById('t-detail').value = '';
+      document.getElementById('t-category').value = '';
+      document.getElementById('t-subcategory').innerHTML = '<option value="">-- Select Category first --</option>';
+      document.getElementById('t-account').value = '';
+      document.getElementById('t-date').value = today;
+    }).catch(err => {
+      showMsg('t-msg', '❌ Error. Try again.', 'error');
+      btn.disabled = false; btn.textContent = 'SUBMIT TRANSACTION';
+    });
   }
 
   function submitLendBorrow() {
@@ -543,23 +435,24 @@
     if (!date || !amount || !person || !account) { showMsg('lb-msg', '⚠️ সব required field পূরণ করুন!', 'error'); return; }
     const btn = document.getElementById('lb-submitBtn');
     btn.disabled = true; btn.textContent = '⏳ SAVING...';
-    google.script.run
-      .withSuccessHandler(() => {
-        showMsg('lb-msg', '✅ Entry সফলভাবে save হয়েছে!', 'success');
-        btn.disabled = false; btn.textContent = 'SUBMIT ENTRY';
-        document.getElementById('lb-amount').value = '';
-        document.getElementById('lb-person').value = '';
-        document.getElementById('lb-duedate').value = '';
-        document.getElementById('lb-note').value = '';
-        document.getElementById('lb-account').value = '';
-        document.getElementById('lb-date').value = today;
-        reloadRecords();
-      })
-      .withFailureHandler(err => {
-        showMsg('lb-msg', '❌ Error: ' + err.message, 'error');
-        btn.disabled = false; btn.textContent = 'SUBMIT ENTRY';
-      })
-      .submitLendBorrow({ type, date, amount: Number(amount), person, account, dueDate, note });
+    fetch(API, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'submitLendBorrow', type, date, amount: Number(amount), person, account, dueDate, note })
+    }).then(() => {
+      showMsg('lb-msg', '✅ Entry সফলভাবে save হয়েছে!', 'success');
+      btn.disabled = false; btn.textContent = 'SUBMIT ENTRY';
+      document.getElementById('lb-amount').value = '';
+      document.getElementById('lb-person').value = '';
+      document.getElementById('lb-duedate').value = '';
+      document.getElementById('lb-note').value = '';
+      document.getElementById('lb-account').value = '';
+      document.getElementById('lb-date').value = today;
+      setTimeout(() => reloadRecords(), 2000);
+    }).catch(() => {
+      showMsg('lb-msg', '❌ Error. Try again.', 'error');
+      btn.disabled = false; btn.textContent = 'SUBMIT ENTRY';
+    });
   }
 
   function submitRepayment() {
@@ -571,23 +464,25 @@
     if (!date || !account || !repayAmount) { showMsg('repay-msg', '⚠️ সব field পূরণ করুন!', 'error'); return; }
     const btn = document.getElementById('repay-submitBtn');
     btn.disabled = true; btn.textContent = '⏳ SAVING...';
-    google.script.run
-      .withSuccessHandler(() => {
-        closeRepayModal();
-        btn.disabled = false; btn.textContent = 'CONFIRM REPAYMENT';
-        reloadRecords();
-      })
-      .withFailureHandler(err => {
-        showMsg('repay-msg', '❌ Error: ' + err.message, 'error');
-        btn.disabled = false; btn.textContent = 'CONFIRM REPAYMENT';
-      })
-      .submitRepayment({ id, person, date, account, repayAmount: Number(repayAmount) });
+    fetch(API, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'submitRepayment', id, person, date, account, repayAmount: Number(repayAmount) })
+    }).then(() => {
+      closeRepayModal();
+      btn.disabled = false; btn.textContent = 'CONFIRM REPAYMENT';
+      setTimeout(() => reloadRecords(), 2000);
+    }).catch(() => {
+      showMsg('repay-msg', '❌ Error. Try again.', 'error');
+      btn.disabled = false; btn.textContent = 'CONFIRM REPAYMENT';
+    });
   }
 
   function reloadRecords() {
-    google.script.run
-      .withSuccessHandler(data => { renderRecords(data.lendBorrowRecords || []); })
-      .getDropdownData();
+    fetch(API + '?action=getDataJson')
+      .then(res => res.json())
+      .then(data => { renderRecords(data.lendBorrowRecords || []); })
+      .catch(() => {});
   }
 
   function showMsg(id, text, type) {
