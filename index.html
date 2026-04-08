@@ -25,15 +25,15 @@
 
     .tabs { display: flex; margin-top: 16px; }
     .tab-btn {
-      flex: 1; padding: 12px 8px;
+      flex: 1; padding: 12px 4px;
       background: rgba(255,255,255,0.12);
       color: rgba(255,255,255,0.7);
-      border: none; font-size: 13px; font-weight: 700;
+      border: none; font-size: 12px; font-weight: 700;
       cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s;
     }
     .tab-btn.active { background: rgba(255,255,255,0.18); color: white; border-bottom: 3px solid #7ed56f; }
 
-    .form-body { padding: 24px 20px 48px; max-width: 600px; margin: 0 auto; }
+    .form-body { padding: 20px 16px 48px; max-width: 600px; margin: 0 auto; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
@@ -89,33 +89,90 @@
     .type-btn.lend.active { border-color: #e53e3e; background: #fff5f5; color: #e53e3e; }
     .type-btn.borrow.active { border-color: #2d6a4f; background: #f0fff4; color: #2d6a4f; }
 
+    /* DASHBOARD STYLES */
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 6px; }
+    .summary-card {
+      border-radius: 14px; padding: 16px 14px;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .summary-card.income { background: #f0fff4; border: 1.5px solid #9ae6b4; }
+    .summary-card.expense { background: #fff5f5; border: 1.5px solid #feb2b2; }
+    .summary-card.balance { background: #ebf8ff; border: 1.5px solid #90cdf4; }
+    .summary-card.lent { background: #fffaf0; border: 1.5px solid #fbd38d; }
+    .summary-card.borrowed { background: #faf5ff; border: 1.5px solid #d6bcfa; }
+    .summary-card.net { background: #f0fff4; border: 1.5px solid #9ae6b4; }
+
+    .summary-label { font-size: 10px; font-weight: 700; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; }
+    .summary-amount { font-size: 18px; font-weight: 800; color: #2d3748; }
+    .summary-sub { font-size: 11px; color: #a0aec0; }
+    .summary-icon { font-size: 20px; margin-bottom: 4px; }
+
+    .full-card {
+      border-radius: 14px; padding: 16px 14px; margin-bottom: 12px;
+      border: 1.5px solid #e2e8f0; background: #f8fafc;
+    }
+
+    .bar-row { margin-bottom: 10px; }
+    .bar-label { display: flex; justify-content: space-between; font-size: 12px; color: #4a5568; margin-bottom: 4px; font-weight: 600; }
+    .bar-bg { background: #e2e8f0; border-radius: 999px; height: 8px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #2d6a4f, #68d391); }
+    .bar-fill.expense { background: linear-gradient(90deg, #e53e3e, #fc8181); }
+
+    .month-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px;
+    }
+    .month-row:last-child { border-bottom: none; }
+    .month-label { width: 80px; font-weight: 700; color: #4a5568; font-size: 12px; }
+    .month-inc { color: #2d6a4f; font-weight: 700; flex: 1; }
+    .month-exp { color: #e53e3e; font-weight: 700; flex: 1; text-align: right; }
+
+    .person-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid #f0f0f0;
+    }
+    .person-row:last-child { border-bottom: none; }
+    .person-name { font-weight: 700; font-size: 14px; color: #2d3748; }
+    .person-detail { font-size: 11px; color: #718096; margin-top: 2px; }
+    .person-pending { font-weight: 800; font-size: 14px; }
+    .person-pending.lend { color: #e53e3e; }
+    .person-pending.borrow { color: #2d6a4f; }
+
+    .account-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid #f0f0f0;
+    }
+    .account-row:last-child { border-bottom: none; }
+    .account-name { font-weight: 700; font-size: 14px; color: #2d3748; }
+    .account-balance { font-weight: 800; font-size: 14px; }
+    .account-balance.positive { color: #2d6a4f; }
+    .account-balance.negative { color: #e53e3e; }
+
+    /* RECORD CARDS */
     .record-card {
       border: 1.5px solid #e2e8f0; border-radius: 12px;
       padding: 14px 16px; margin-bottom: 10px; background: #f8fafc;
     }
     .record-card.pending { border-left: 4px solid #f6ad55; }
     .record-card.partial { border-left: 4px solid #63b3ed; }
-
     .record-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
     .record-person { font-weight: 700; font-size: 15px; color: #2d3748; }
     .record-amount { font-weight: 800; font-size: 15px; }
     .record-amount.lend { color: #e53e3e; }
     .record-amount.borrow { color: #2d6a4f; }
     .record-meta { font-size: 12px; color: #718096; margin-bottom: 8px; }
-
     .record-progress { background: #e2e8f0; border-radius: 999px; height: 6px; margin-bottom: 8px; overflow: hidden; }
     .record-progress-bar { height: 100%; border-radius: 999px; background: #68d391; }
-
     .record-status { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; }
     .status-pending { background: #fef3c7; color: #92400e; }
     .status-partial { background: #dbeafe; color: #1e40af; }
-
     .repay-btn {
       float: right; padding: 5px 12px; background: #1a3c5e;
       color: white; border: none; border-radius: 8px;
       font-size: 12px; font-weight: 700; cursor: pointer;
     }
 
+    /* MODAL */
     .modal-overlay {
       display: none; position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -136,6 +193,12 @@
     .submit-btn:active { background: #2d6a4f; transform: scale(0.98); }
     .submit-btn:disabled { opacity: 0.6; }
 
+    .refresh-btn {
+      width: 100%; padding: 12px; background: #eef2f7;
+      color: #4a5568; border: 1.5px solid #e2e8f0; border-radius: 10px;
+      font-size: 13px; font-weight: 700; cursor: pointer; margin-bottom: 16px;
+    }
+
     .msg { margin-top: 14px; padding: 13px; border-radius: 10px; text-align: center; font-size: 14px; font-weight: 600; display: none; }
     .msg.success { background: #c6f6d5; color: #276749; display: block; }
     .msg.error { background: #fed7d7; color: #9b2c2c; display: block; }
@@ -149,6 +212,7 @@
 
     .no-records { text-align: center; padding: 30px; color: #a0aec0; font-size: 14px; }
     .footer { text-align: center; padding: 20px; font-size: 11px; color: #a0aec0; border-top: 1px solid #f0f0f0; margin-top: 20px; }
+    .dash-loading { text-align: center; padding: 40px; color: #a0aec0; }
   </style>
 </head>
 <body>
@@ -160,6 +224,7 @@
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab('transaction', this)">💰 Transaction</button>
       <button class="tab-btn" onclick="switchTab('lendborrow', this)">🤝 Lend & Borrow</button>
+      <button class="tab-btn" onclick="switchTab('dashboard', this); loadDashboard();">📊 Dashboard</button>
     </div>
   </div>
 
@@ -256,12 +321,17 @@
       </div>
       <button class="submit-btn" id="lb-submitBtn" onclick="submitLendBorrow()">Submit Entry</button>
       <div id="lb-msg" class="msg"></div>
-
       <div class="section-title" style="margin-top:32px;">📊 Active Records</div>
       <div id="records-list"><div class="no-records">Loading...</div></div>
     </div>
-  </div>
 
+    <!-- DASHBOARD TAB -->
+    <div id="tab-dashboard" class="tab-content" style="display:none;">
+      <button class="refresh-btn" onclick="loadDashboard()">🔄 Refresh Dashboard</button>
+      <div id="dashboard-content"><div class="dash-loading">Loading dashboard...</div></div>
+    </div>
+
+  </div>
   <div class="footer">Income & Expense Tracker &nbsp;·&nbsp; Personal Finance &nbsp;·&nbsp; Confidential</div>
 </div>
 
@@ -292,12 +362,12 @@
 <script>
   const API = 'https://script.google.com/macros/s/AKfycbwWq59RCoL2OWNhMKS6G37JdYQZmOC4vYJu7wBmR99Kq73p28Xrv_3rJp3ATNPtaGY7sQ/exec';
   let dropdownData = {};
+  let dashboardLoaded = false;
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('t-date').value = today;
   document.getElementById('lb-date').value = today;
   document.getElementById('repay-date').value = today;
 
-  // Data load করুন
   fetch(API + '?action=getDataJson')
     .then(res => res.json())
     .then(data => {
@@ -323,6 +393,154 @@
       document.getElementById('loadingArea').innerHTML =
         '<p style="color:red;text-align:center;padding:20px;">Error loading. Please refresh.</p>';
     });
+
+  function loadDashboard() {
+    document.getElementById('dashboard-content').innerHTML = '<div class="dash-loading">⏳ Loading...</div>';
+    fetch(API + '?action=getDashboardData')
+      .then(res => res.json())
+      .then(data => { renderDashboard(data); dashboardLoaded = true; })
+      .catch(() => {
+        document.getElementById('dashboard-content').innerHTML =
+          '<p style="color:red;text-align:center;padding:20px;">Error loading dashboard.</p>';
+      });
+  }
+
+  function renderDashboard(d) {
+    const balance = d.balance || 0;
+    const netLB = (d.totalLentPending || 0) - (d.totalBorrowedPending || 0);
+
+    // Monthly data — last 6 months
+    const months = Object.keys(d.monthlyData || {}).sort().slice(-6);
+
+    // Category bars — top 6
+    const cats = Object.entries(d.categoryData || {}).sort((a,b) => b[1]-a[1]).slice(0,6);
+    const maxCat = cats.length ? cats[0][1] : 1;
+
+    // Account rows
+    const accounts = Object.entries(d.accountData || {});
+
+    // Person summary
+    const persons = Object.entries(d.personSummary || {});
+
+    document.getElementById('dashboard-content').innerHTML = `
+
+      <div class="section-title">💰 Overall Summary</div>
+      <div class="summary-grid">
+        <div class="summary-card income">
+          <div class="summary-icon">📈</div>
+          <div class="summary-label">Total Income</div>
+          <div class="summary-amount">৳${fmt(d.totalIncome)}</div>
+        </div>
+        <div class="summary-card expense">
+          <div class="summary-icon">📉</div>
+          <div class="summary-label">Total Expense</div>
+          <div class="summary-amount">৳${fmt(d.totalExpense)}</div>
+        </div>
+      </div>
+      <div class="summary-grid" style="margin-top:12px;">
+        <div class="summary-card balance">
+          <div class="summary-icon">💼</div>
+          <div class="summary-label">Net Balance</div>
+          <div class="summary-amount" style="color:${balance>=0?'#2d6a4f':'#e53e3e'}">৳${fmt(balance)}</div>
+        </div>
+        <div class="summary-card ${netLB>=0?'lent':'borrowed'}">
+          <div class="summary-icon">${netLB>=0?'💸':'🤲'}</div>
+          <div class="summary-label">${netLB>=0?'Net Receivable':'Net Payable'}</div>
+          <div class="summary-amount" style="color:${netLB>=0?'#e53e3e':'#2d6a4f'}">৳${fmt(Math.abs(netLB))}</div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:24px;">🏦 Lend & Borrow Summary</div>
+      <div class="summary-grid">
+        <div class="summary-card lent">
+          <div class="summary-icon">💸</div>
+          <div class="summary-label">Total Lent</div>
+          <div class="summary-amount">৳${fmt(d.totalLent)}</div>
+          <div class="summary-sub">Pending: ৳${fmt(d.totalLentPending)}</div>
+        </div>
+        <div class="summary-card borrowed">
+          <div class="summary-icon">🤲</div>
+          <div class="summary-label">Total Borrowed</div>
+          <div class="summary-amount">৳${fmt(d.totalBorrowed)}</div>
+          <div class="summary-sub">Pending: ৳${fmt(d.totalBorrowedPending)}</div>
+        </div>
+      </div>
+
+      ${persons.length ? `
+      <div class="section-title" style="margin-top:24px;">👥 Person Wise Summary</div>
+      <div class="full-card">
+        ${persons.map(([name, p]) => {
+          const lentPending = p.lentPending || 0;
+          const borPending = p.borrowedPending || 0;
+          const net = lentPending - borPending;
+          return `
+          <div class="person-row">
+            <div>
+              <div class="person-name">👤 ${name}</div>
+              <div class="person-detail">
+                ${p.lent ? `Lent: ৳${fmt(p.lent)} (pending: ৳${fmt(lentPending)})` : ''}
+                ${p.lent && p.borrowed ? ' · ' : ''}
+                ${p.borrowed ? `Borrowed: ৳${fmt(p.borrowed)} (pending: ৳${fmt(borPending)})` : ''}
+              </div>
+            </div>
+            <div class="person-pending ${net>=0?'lend':'borrow'}">
+              ${net>=0?'+':'-'}৳${fmt(Math.abs(net))}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>` : ''}
+
+      ${months.length ? `
+      <div class="section-title" style="margin-top:24px;">📅 Monthly Summary</div>
+      <div class="full-card">
+        <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:#718096;margin-bottom:8px;text-transform:uppercase;">
+          <span>Month</span><span style="color:#2d6a4f">Income</span><span style="color:#e53e3e">Expense</span>
+        </div>
+        ${months.map(m => {
+          const md = d.monthlyData[m];
+          const date = new Date(m + '-01');
+          const label = date.toLocaleDateString('en-GB', { month: 'short', year: '2-digit' });
+          return `
+          <div class="month-row">
+            <div class="month-label">${label}</div>
+            <div class="month-inc">৳${fmt(md.income)}</div>
+            <div class="month-exp">৳${fmt(md.expense)}</div>
+          </div>`;
+        }).join('')}
+      </div>` : ''}
+
+      ${cats.length ? `
+      <div class="section-title" style="margin-top:24px;">📂 Expense by Category</div>
+      <div class="full-card">
+        ${cats.map(([cat, amt]) => `
+          <div class="bar-row">
+            <div class="bar-label"><span>${cat}</span><span>৳${fmt(amt)}</span></div>
+            <div class="bar-bg"><div class="bar-fill expense" style="width:${Math.round((amt/maxCat)*100)}%"></div></div>
+          </div>
+        `).join('')}
+      </div>` : ''}
+
+      ${accounts.length ? `
+      <div class="section-title" style="margin-top:24px;">🏦 Account Wise Balance</div>
+      <div class="full-card">
+        ${accounts.map(([acc, a]) => {
+          const bal = (a.income||0) - (a.expense||0);
+          return `
+          <div class="account-row">
+            <div class="account-name">🏦 ${acc}</div>
+            <div>
+              <div class="account-balance ${bal>=0?'positive':'negative'}">৳${fmt(bal)}</div>
+              <div style="font-size:11px;color:#a0aec0;text-align:right">In: ৳${fmt(a.income)} · Out: ৳${fmt(a.expense)}</div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>` : ''}
+    `;
+  }
+
+  function fmt(n) {
+    return (Number(n)||0).toLocaleString('en-IN');
+  }
 
   function switchTab(tab, btn) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -418,10 +636,7 @@
       document.getElementById('t-subcategory').innerHTML = '<option value="">-- Select Category first --</option>';
       document.getElementById('t-account').value = '';
       document.getElementById('t-date').value = today;
-    }).catch(err => {
-      showMsg('t-msg', '❌ Error. Try again.', 'error');
-      btn.disabled = false; btn.textContent = 'SUBMIT TRANSACTION';
-    });
+    }).catch(() => { showMsg('t-msg', '❌ Error. Try again.', 'error'); btn.disabled = false; btn.textContent = 'SUBMIT TRANSACTION'; });
   }
 
   function submitLendBorrow() {
@@ -449,10 +664,7 @@
       document.getElementById('lb-account').value = '';
       document.getElementById('lb-date').value = today;
       setTimeout(() => reloadRecords(), 2000);
-    }).catch(() => {
-      showMsg('lb-msg', '❌ Error. Try again.', 'error');
-      btn.disabled = false; btn.textContent = 'SUBMIT ENTRY';
-    });
+    }).catch(() => { showMsg('lb-msg', '❌ Error. Try again.', 'error'); btn.disabled = false; btn.textContent = 'SUBMIT ENTRY'; });
   }
 
   function submitRepayment() {
@@ -472,10 +684,7 @@
       closeRepayModal();
       btn.disabled = false; btn.textContent = 'CONFIRM REPAYMENT';
       setTimeout(() => reloadRecords(), 2000);
-    }).catch(() => {
-      showMsg('repay-msg', '❌ Error. Try again.', 'error');
-      btn.disabled = false; btn.textContent = 'CONFIRM REPAYMENT';
-    });
+    }).catch(() => { showMsg('repay-msg', '❌ Error. Try again.', 'error'); btn.disabled = false; btn.textContent = 'CONFIRM REPAYMENT'; });
   }
 
   function reloadRecords() {
